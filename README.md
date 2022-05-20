@@ -1,6 +1,6 @@
 # Life-In-The-Fast-Lane
 
-## Premise: I have a deep love for cars and I wanted this project to shed a bit of light on that. Having a project being based on something I carry a love for will make it easier to pay more attention to detail, and will in turn allow me to produce a better end product.
+#### Premise: I have a deep love for cars and I wanted this project to shed a bit of light on that. Having a project being based on something I carry a love for will make it easier to pay more attention to detail, and will in turn allow me to produce a better end product.
 
 User Story
 As a user I want to
