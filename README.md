@@ -4,6 +4,7 @@ Premise: I have a deep love for cars and I wanted this project to shed a bit of 
 
 User Story
 As a user I want to
+
 . Create a goal of staying alive for an alotted time(win condition) and then the player can choose to keep going for a higher time or end the game
 
 . Set obstacles such as tires, other cars, traffic cones, and maybe road spikes. If a player collides with these obstacles the loss condition is activated
