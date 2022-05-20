@@ -1,6 +1,7 @@
 # Life-In-The-Fast-Lane
 
 Premise: I have a deep love for cars and I wanted this project to shed a bit of light on that. Having a project being based on something I carry a love for will make it easier to pay more attention to detail, and will in turn allow me to produce a better end product.
+
 User Story
 As a user I want to
 . Create a goal of staying alive for an alotted time(win condition) and then the player can choose to keep going for a higher time or end the game
