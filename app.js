@@ -65,7 +65,7 @@ class Obstacle{
 }
 // 
 window.addEventListener('DOMContentLoaded',((e) =>{
-    playerOne = new Car(10,400,'red',20,20)
+   
 }) )
 
 // function layout for movement
@@ -73,10 +73,10 @@ let movement = ((e) =>{
     console.log(`key pressed: ${e.key}`)
     switch (e.key){
         case "ArrowLeft":
-            playerOne.x >= 0 ? playerOne.x -= 10: null
+            playerOne.x > 80 ? playerOne.x -= 10: null
             break
         case 'ArrowRight':
-            playerOne.x >= 0 ? playerOne.x += 10: null
+            playerOne.x < 390 ? playerOne.x += 10: null
             break
     }
         console.log(playerOne)
@@ -109,6 +109,15 @@ function detectHit(p1, p2){
 function gameStart(){
     activeGame = true
     console.log('Game has started')
+    playerOne = new Car(250,400,'red',30,50)
     playerOne.render()
+    const runGame = setInterval(gameLoop, 120);
 }
 start.addEventListener('click', gameStart)
+
+function gameLoop(){
+    ctx.clearRect(0, 0, game.width, game.height);
+
+
+    playerOne.render();
+}
