@@ -12,6 +12,8 @@ h1{
     color: #F890E7;
     text-align: center;
     margin-top:  10%;
+    background-color: #0BD3D3;
+    margin: 0 auto
 }
 canvas{
     display: block;
@@ -21,4 +23,8 @@ canvas{
 }
 button{
 margin-bottom: 40px;
+font-size: 25px;
+color: #0BD3D3;
+background-color:dimgrey;
+font-family: cursive;
 }

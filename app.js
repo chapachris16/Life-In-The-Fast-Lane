@@ -65,7 +65,7 @@ class Obstacle{
 }
 // 
 window.addEventListener('DOMContentLoaded',((e) =>{
-   
+gasCan.render()
 }) )
 
 // function layout for movement
@@ -110,6 +110,7 @@ function gameStart(){
     activeGame = true
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
+    gasCan = new Obstacle((Math.random()* 480),10,'blue',30,50)
     playerOne.render()
     const runGame = setInterval(gameLoop, 120);
 }
@@ -117,7 +118,6 @@ start.addEventListener('click', gameStart)
 
 function gameLoop(){
     ctx.clearRect(0, 0, game.width, game.height);
-
-
+    gasCan.render()
     playerOne.render();
 }
