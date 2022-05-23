@@ -1,3 +1,14 @@
+/* color: #F890E7; pink */
+/*  color: #0BD3D3 turquoise*/
+
 body{
-    background-color: slategray;
+    background-color: grey;
+}
+
+h1{
+    font-family: cursive;
+    font-size: 40px;
+    color: #F890E7;
+    text-align: center;
+    margin-top:  10%;
 }
