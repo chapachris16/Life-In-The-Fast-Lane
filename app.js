@@ -33,7 +33,7 @@ let playerOne
 
 // class creator for player need to edit to include sprite instead of color properties
 class Car{
-    constructor(x,y,color,width,height){
+    constructor(x, y, color, width, height){
         this.x = x
         this.y = y
         this.color = color
@@ -43,7 +43,7 @@ class Car{
     }
     // Method to create car on screen
     render(){
-        ctx.fill = this.color
+        ctx.fillStyle = this.color
         ctx.fillRect(this.x,this.y, this.width, this.height) 
     }
 }
@@ -65,7 +65,7 @@ class Obstacle{
 }
 // 
 window.addEventListener('DOMContentLoaded',((e) =>{
-gasCan.render()
+    
 }) )
 
 // function layout for movement
@@ -95,22 +95,20 @@ function detectHit(p1, p2){
         p1.x < p2.x + p2.width; 
 
     if(hitTest){
-        if (gasCan){
-            // refill timer
-            console.log('Gas refilled')
-        }
-        else{
-            activeGame = false
-            console.log('Game Over')
+        console.log('Gas refilled')
+        return newGasCan()
+    } else{
+        return false
+            
         }
     }
-}
+
 
 function gameStart(){
     activeGame = true
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
-    gasCan = new Obstacle((Math.random()* 480),10,'blue',30,50)
+    gasCan = new Obstacle((Math.random()* 480),400,'blue',30,50)
     playerOne.render()
     const runGame = setInterval(gameLoop, 120);
 }
@@ -120,4 +118,14 @@ function gameLoop(){
     ctx.clearRect(0, 0, game.width, game.height);
     gasCan.render()
     playerOne.render();
+    let hit = detectHit(playerOne, gasCan)
+}
+
+function newGasCan(){
+    gasCan.alive = false
+    setTimeout(function(){
+
+        gasCan = new Obstacle((Math.random() * 500),10,'blue',30,50)
+    }, 1000)
+   return true
 }
