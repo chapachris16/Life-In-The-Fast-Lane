@@ -27,7 +27,7 @@ let gasCan
 let game = document.getElementById('game')
 let ctx = game.getContext('2d')
 let timer = document.getElementById('timer')
-let activeGame = true
+let start = document.getElementById('start')
 let playerOne
 // 
 
@@ -72,12 +72,6 @@ window.addEventListener('DOMContentLoaded',((e) =>{
 let movement = ((e) =>{
     console.log(`key pressed: ${e.key}`)
     switch (e.key){
-        case "ArrowUp":
-            playerOne.y >= 0 ? playerOne.y -= 20: null
-            break
-        case "ArrowDown":
-            playerOne.y >= 0 ? playerOne.y += 20: null
-            break
         case "ArrowLeft":
             playerOne.x >= 0 ? playerOne.x -= 10: null
             break
@@ -90,6 +84,9 @@ let movement = ((e) =>{
 // Event listener for key movements and how to respond
 document.addEventListener('keydown', movement)
 // 
+
+
+// hit detection
 function detectHit(p1, p2){
     let hitTest =
         p1.y + p1.height > p2.y &&
@@ -100,9 +97,18 @@ function detectHit(p1, p2){
     if(hitTest){
         if (gasCan){
             // refill timer
+            console.log('Gas refilled')
         }
         else{
             activeGame = false
+            console.log('Game Over')
         }
     }
 }
+
+function gameStart(){
+    activeGame = true
+    console.log('Game has started')
+    playerOne.render()
+}
+start.addEventListener('click', gameStart)

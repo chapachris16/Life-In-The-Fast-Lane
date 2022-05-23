@@ -3,6 +3,7 @@
 
 body{
     background-color: grey;
+    text-align: center;
 }
 
 h1{
@@ -18,4 +19,7 @@ canvas{
     background-color: black;
     background-image: url('https://opengameart.org/sites/default/files/styles/medium/public/background-1_0.png');
     background-size: contain;
+}
+button{
+margin-bottom: 40px;
 }
