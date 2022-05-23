@@ -27,6 +27,8 @@ let gasCan
 let game = document.getElementById('game')
 let ctx = game.getContext('2d')
 let timer = document.getElementById('timer')
+let activeGame = true
+let playerOne
 // 
 
 // class creator for player need to edit to include sprite instead of color properties
@@ -62,7 +64,10 @@ class Obstacle{
     }
 }
 // 
-let playerOne = new Car(10,400,'red',20,20)
+window.addEventListener('DOMContentLoaded',((e) =>{
+    playerOne = new Car(10,400,'red',20,20)
+}) )
+
 // function layout for movement
 let movement = ((e) =>{
     console.log(`key pressed: ${e.key}`)
@@ -80,10 +85,24 @@ let movement = ((e) =>{
             playerOne.x >= 0 ? playerOne.x += 10: null
             break
     }
-        
+        console.log(playerOne)
 })
 // Event listener for key movements and how to respond
 document.addEventListener('keydown', movement)
 // 
+function detectHit(p1, p2){
+    let hitTest =
+        p1.y + p1.height > p2.y &&
+        p1.y < p2.y + p2.height &&
+        p1.x + p1.width > p2.x &&
+        p1.x < p2.x + p2.width; 
 
-
+    if(hitTest){
+        if (gasCan){
+            // refill timer
+        }
+        else{
+            activeGame = false
+        }
+    }
+}

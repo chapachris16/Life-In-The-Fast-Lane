@@ -12,3 +12,10 @@ h1{
     text-align: center;
     margin-top:  10%;
 }
+canvas{
+    display: block;
+    margin: 0 auto;
+    background-color: black;
+    background-image: url('https://opengameart.org/sites/default/files/styles/medium/public/background-1_0.png');
+    background-size: contain;
+}
