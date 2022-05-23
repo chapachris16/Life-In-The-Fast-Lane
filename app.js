@@ -26,6 +26,7 @@ let obstacles
 let gasCan
 let game = document.getElementById('game')
 let ctx = game.getContext('2d')
+let timer = document.getElementById('timer')
 // 
 
 // class creator for player need to edit to include sprite instead of color properties
