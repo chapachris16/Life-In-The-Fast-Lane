@@ -12,6 +12,14 @@
 
 // Maybe randomize obstacles to be a traffic cone, tire in the road, trashcan, or roadspikes
 
+// https://opengameart.org/content/red-car-top-down Player Car sprite
+
+// https://www.spriters-resource.com/search/?q=trash+can&c=-1&o%5B%5D=s&o%5B%5D=p&o%5B%5D=g&o%5B%5D=ig Go back and look for trashcan img for game
+
+// https://opengameart.org/content/basic-topdown-view-car obstacle cars sprite
+
+// https://www.pixilart.com/draw/gas-can-0d8faf0067e0f64 pixelated gas can for game
+
 // Set Variables for Game to be called
 // let playerOne
 let obstacles
@@ -20,7 +28,7 @@ let game = document.getElementById('game')
 let ctx = game.getContext('2d')
 // 
 
-// class creator for player
+// class creator for player need to edit to include sprite instead of color properties
 class Car{
     constructor(x,y,color,width,height){
         this.x = x
@@ -31,6 +39,22 @@ class Car{
         this.alive = true
     }
     // Method to create car on screen
+    render(){
+        ctx.fill = this.color
+        ctx.fillRect(this.x,this.y, this.width, this.height) 
+    }
+}
+// class creator for obstacles will edit later to include a sprite into it
+class Obstacle{
+    constructor(x,y,color,width,height){
+        this.x = x
+        this.y = y
+        this.color = color
+        this.height = height
+        this.width = width 
+        this.alive = true
+    }
+    // Method to create obstacle on screen
     render(){
         ctx.fill = this.color
         ctx.fillRect(this.x,this.y, this.width, this.height) 
@@ -57,3 +81,8 @@ let movement = ((e) =>{
     }
         
 })
+// Event listener for key movements and how to respond
+document.addEventListener('keydown', movement)
+// 
+
+
