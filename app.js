@@ -97,6 +97,7 @@ function detectHit(p1, p2){
 
     if(hitTest){
         console.log('Gas refilled')
+        console.log('collision')
         return newGasCan()
     } else{
         return false
@@ -108,7 +109,7 @@ function detectHit(p1, p2){
 function gameStart(){
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
-    gasCan = new Car((Math.random()* 480),400,'blue',30,50)
+    gasCan = new Car((Math.random()* 480),10,'blue',30,50)
     playerOne.render()
     const runGame = setInterval(gameLoop, 120)
     console.log(`Game Active: ${gameActive}`);
@@ -118,10 +119,12 @@ start.addEventListener('click', gameStart)
 function gameLoop(){
     ctx.clearRect(0, 0, game.width, game.height);
     if(gasCan.alive){
+        gasCan.y += 8
         gasCan.render()
+        
         let hit = detectHit(playerOne, gasCan)
     }
-
+   
     playerOne.render();
     
 }
@@ -130,7 +133,9 @@ function newGasCan(){
     gasCan.alive = false
     setTimeout(function(){
         let x = Math.floor(Math.random()* 500)
+        
         gasCan = new Car(x,10,'blue',30,50)
+        
     }, 1000)
    return true
 }
