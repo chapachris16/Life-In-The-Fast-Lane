@@ -30,6 +30,9 @@ let timer = document.getElementById('timer')
 let start = document.getElementById('start')
 let playerOne
 let gameActive = true
+let gameInterval
+let can = document.getElementById('gas-can')
+let raceCar = document.getElementById('player')
 // 
 
 // class creator for player need to edit to include sprite instead of color properties
@@ -45,26 +48,26 @@ class Car{
     // Method to create car on screen
     render(){
         ctx.fillStyle = this.color
-        ctx.fillRect(this.x,this.y, this.width, this.height) 
+        ctx.drawImage(raceCar,this.x,this.y, this.width, this.height) 
     }
 }
 // class creator for obstacles will edit later to include a sprite into it
-// class Obstacle{
-//     constructor(x,y,color,width,height){
-//         this.x = x
-//         this.y = y
-//         this.color = color
-//         this.height = height
-//         this.width = width 
-//         this.alive = true
-//     }
+class Obstacle{
+    constructor(x,y,color,width,height){
+        this.x = x
+        this.y = y
+        this.color = color
+        this.height = height
+        this.width = width 
+        this.alive = true
+    }
     // Method to create obstacle on screen
-//     render(){
-//         ctx.fill = this.color
-//         ctx.fillRect(this.x,this.y, this.width, this.height) 
-//     }
-// }
-// // 
+    render(){
+        ctx.fill = this.color
+        ctx.drawImage(can, this.x,this.y, this.width, this.height) 
+    }
+}
+// 
 window.addEventListener('DOMContentLoaded',((e) =>{
     
 }) )
@@ -74,10 +77,16 @@ let movement = ((e) =>{
     console.log(`key pressed: ${e.key}`)
     switch (e.key){
         case "ArrowLeft":
-            playerOne.x > 80 ? playerOne.x -= 10: null
+            playerOne.x > 10 ? playerOne.x -= 20: null
             break
         case 'ArrowRight':
-            playerOne.x < 390 ? playerOne.x += 10: null
+            playerOne.x < 490 ? playerOne.x += 20: null
+            break
+        case 'ArrowUp': 
+            playerOne.y > 10 ? playerOne.y -= 10: null
+            break
+        case 'ArrowDown': 
+            playerOne.y < 470 ? playerOne.y += 10: null
             break
     }
         console.log(playerOne)
@@ -101,7 +110,7 @@ function detectHit(p1, p2){
         return newGasCan()
     } else{
         return false
-            
+        
         }
     }
 
@@ -109,9 +118,9 @@ function detectHit(p1, p2){
 function gameStart(){
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
-    gasCan = new Car((Math.random()* 480),10,'blue',30,50)
+    gasCan = new Obstacle((Math.random()* 480),10,'blue',30,50)
     playerOne.render()
-    const runGame = setInterval(gameLoop, 120)
+    gameInterval = setInterval(gameLoop, 60)
     console.log(`Game Active: ${gameActive}`);
 }
 start.addEventListener('click', gameStart)
@@ -121,12 +130,10 @@ function gameLoop(){
     if(gasCan.alive){
         gasCan.y += 8
         gasCan.render()
-        
         let hit = detectHit(playerOne, gasCan)
     }
-   
     playerOne.render();
-    
+    gameOver()
 }
 
 function newGasCan(){
@@ -134,8 +141,15 @@ function newGasCan(){
     setTimeout(function(){
         let x = Math.floor(Math.random()* 500)
         
-        gasCan = new Car(x,10,'blue',30,50)
+        gasCan = new Obstacle(x,10,'blue',30,50)
         
-    }, 1000)
+    }, 2000)
    return true
+}
+
+function gameOver(){
+    if(gasCan.y > 500){
+        clearInterval(gameInterval)
+        console.log('game over')
+    }
 }

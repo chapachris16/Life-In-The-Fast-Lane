@@ -28,3 +28,7 @@ color: #0BD3D3;
 background-color:dimgrey;
 font-family: cursive;
 }
+
+img{
+    display: none;
+}
