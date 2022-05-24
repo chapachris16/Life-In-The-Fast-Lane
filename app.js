@@ -29,6 +29,7 @@ let ctx = game.getContext('2d')
 let timer = document.getElementById('timer')
 let start = document.getElementById('start')
 let playerOne
+let gameActive = true
 // 
 
 // class creator for player need to edit to include sprite instead of color properties
@@ -48,22 +49,22 @@ class Car{
     }
 }
 // class creator for obstacles will edit later to include a sprite into it
-class Obstacle{
-    constructor(x,y,color,width,height){
-        this.x = x
-        this.y = y
-        this.color = color
-        this.height = height
-        this.width = width 
-        this.alive = true
-    }
+// class Obstacle{
+//     constructor(x,y,color,width,height){
+//         this.x = x
+//         this.y = y
+//         this.color = color
+//         this.height = height
+//         this.width = width 
+//         this.alive = true
+//     }
     // Method to create obstacle on screen
-    render(){
-        ctx.fill = this.color
-        ctx.fillRect(this.x,this.y, this.width, this.height) 
-    }
-}
-// 
+//     render(){
+//         ctx.fill = this.color
+//         ctx.fillRect(this.x,this.y, this.width, this.height) 
+//     }
+// }
+// // 
 window.addEventListener('DOMContentLoaded',((e) =>{
     
 }) )
@@ -105,27 +106,31 @@ function detectHit(p1, p2){
 
 
 function gameStart(){
-    activeGame = true
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
-    gasCan = new Obstacle((Math.random()* 480),400,'blue',30,50)
+    gasCan = new Car((Math.random()* 480),400,'blue',30,50)
     playerOne.render()
-    const runGame = setInterval(gameLoop, 120);
+    const runGame = setInterval(gameLoop, 120)
+    console.log(`Game Active: ${gameActive}`);
 }
 start.addEventListener('click', gameStart)
 
 function gameLoop(){
     ctx.clearRect(0, 0, game.width, game.height);
-    gasCan.render()
+    if(gasCan.alive){
+        gasCan.render()
+        let hit = detectHit(playerOne, gasCan)
+    }
+
     playerOne.render();
-    let hit = detectHit(playerOne, gasCan)
+    
 }
 
 function newGasCan(){
     gasCan.alive = false
     setTimeout(function(){
-
-        gasCan = new Obstacle((Math.random() * 500),10,'blue',30,50)
+        let x = Math.floor(Math.random()* 500)
+        gasCan = new Car(x,10,'blue',30,50)
     }, 1000)
    return true
 }
