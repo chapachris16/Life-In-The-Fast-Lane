@@ -33,6 +33,7 @@ let gameActive = true
 let gameInterval
 let can = document.getElementById('gas-can')
 let raceCar = document.getElementById('player')
+let score = document.getElementById('score')
 // 
 
 // class creator for player need to edit to include sprite instead of color properties
@@ -107,6 +108,9 @@ function detectHit(p1, p2){
     if(hitTest){
         console.log('Gas refilled')
         console.log('collision')
+        let gameScore = Number(score.textContent)
+        let NewScore = gameScore + 100
+        score.textContent = (NewScore)
         return newGasCan()
     } else{
         return false
@@ -118,10 +122,11 @@ function detectHit(p1, p2){
 function gameStart(){
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
-    gasCan = new Obstacle((Math.random()* 480),10,'blue',30,50)
+    gasCan = new Obstacle((Math.random()* 480),10,'blue',80,50)
     playerOne.render()
     gameInterval = setInterval(gameLoop, 60)
-    console.log(`Game Active: ${gameActive}`);
+    console.log(`Game Active: ${gameActive}`)
+    score.innerText = null;
 }
 start.addEventListener('click', gameStart)
 
@@ -141,7 +146,7 @@ function newGasCan(){
     setTimeout(function(){
         let x = Math.floor(Math.random()* 500)
         
-        gasCan = new Obstacle(x,10,'blue',30,50)
+        gasCan = new Obstacle(x,10,'blue',80,50)
         
     }, 2000)
    return true
@@ -151,5 +156,6 @@ function gameOver(){
     if(gasCan.y > 500){
         clearInterval(gameInterval)
         console.log('game over')
+        alert('Game Over')
     }
 }
