@@ -14,14 +14,11 @@
 
 // https://opengameart.org/content/red-car-top-down Player Car sprite
 
-// https://www.spriters-resource.com/search/?q=trash+can&c=-1&o%5B%5D=s&o%5B%5D=p&o%5B%5D=g&o%5B%5D=ig Go back and look for trashcan img for game
 
-// https://opengameart.org/content/basic-topdown-view-car obstacle cars sprite
 
 // https://www.pixilart.com/draw/gas-can-0d8faf0067e0f64 pixelated gas can for game
 
 // Set Variables for Game to be called
-// let playerOne
 let obstacles
 let gasCan
 let game = document.getElementById('game')
@@ -123,7 +120,7 @@ function detectHit(p1, p2){
 function gameStart(){
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
-    gasCan = new Obstacle((Math.random()* 480),10,'blue',80,50)
+    gasCan = new Obstacle((Math.random()* 440),10,'blue',80,50)
     playerOne.render()
     gameInterval = setInterval(gameLoop, 60)
     console.log(`Game Active: ${gameActive}`)
@@ -136,7 +133,7 @@ start.addEventListener('click', gameStart)
 function gameLoop(){
     ctx.clearRect(0, 0, game.width, game.height);
     if(gasCan.alive){
-        gasCan.y += 10
+        gasCan.y += 15
         gasCan.render()
         let hit = detectHit(playerOne, gasCan)
     }
@@ -148,10 +145,9 @@ function newGasCan(){
     gasCan.alive = false
     setTimeout(function(){
         let x = Math.floor(Math.random()* 500)
-        
         gasCan = new Obstacle(x,10,'blue',80,50)
         
-    }, 2000)
+    }, 3000)
    return true
 }
 
@@ -160,6 +156,7 @@ function gameOver(){
         clearInterval(gameInterval)
         console.log('game over')
         alert(`Game Over: your score was ${score.innerText}`)
+        clearInterval(gameInterval)
     }else if(score.innerText === '1500'){
         alert('Winner')
         clearInterval(gameInterval)
