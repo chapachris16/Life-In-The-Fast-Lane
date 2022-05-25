@@ -9,6 +9,7 @@
     <script defer async src="app.js"></script>
 </head>
 <body>
+    <audio id="audio" autoplay ></audio>
     <img id="gas-can" src="pixil-frame-0.png" alt="">
     <img id='player' src="simple-travel-car-top_view.png" alt="player car">
     <div id="container">
@@ -16,8 +17,14 @@
         <div id="timer"></div>
         <button id="start">Start game</button>
         <canvas id="game" height="500" width="500"></canvas>
-        <div id="score"></div>
-
+        <div id="score">0</div>
     </div>
+    <ul id="instructions">
+        <p>Instructions</p>
+        <li>Catch the gas cans as they fall along the screen</li>
+        <li>Each gas can is worth 100 points</li>
+        <li>Get to 1500 points and you win</li>
+        <li>Dropping a gas can means you run out of gas and you lose</li>
+    </ul>
 </body>
 </html>
