@@ -21,20 +21,20 @@
 // Set Variables for Game to be called
 let obstacles
 let gasCan
-let game = document.getElementById('game')
-let ctx = game.getContext('2d')
+let game = document.getElementById('game') // access canvas from html
+let ctx = game.getContext('2d') // creates canvas in html
 let timer = document.getElementById('timer')
-let start = document.getElementById('start')
-let playerOne
+let start = document.getElementById('start')// access start button from html
+let playerOne // global variable to be declared
 let gameActive = true
-let gameInterval
-let can = document.getElementById('gas-can')
-let raceCar = document.getElementById('player')
-let score = document.getElementById('score')
+let gameInterval // global variable for game timing interval
+let can = document.getElementById('gas-can')// access image to use for gas can obstacle
+let raceCar = document.getElementById('player') // access image to use for player sprite
+let score = document.getElementById('score')// access element from html
 let music = document.getElementById('audio')
 // 
 
-// class creator for player need to edit to include sprite instead of color properties
+// class creator for player 
 class Car{
     constructor(x, y, color, width, height){
         this.x = x
@@ -47,10 +47,11 @@ class Car{
     // Method to create car on screen
     render(){
         ctx.fillStyle = this.color
+        // uses image on canvas instead of rectangle
         ctx.drawImage(raceCar,this.x,this.y, this.width, this.height) 
     }
 }
-// class creator for obstacles will edit later to include a sprite into it
+// class creator for gascan
 class Obstacle{
     constructor(x,y,color,width,height){
         this.x = x
@@ -63,6 +64,7 @@ class Obstacle{
     // Method to create obstacle on screen
     render(){
         ctx.fill = this.color
+        // uses image on canvas instead of rectangle
         ctx.drawImage(can, this.x,this.y, this.width, this.height) 
     }
 }
@@ -106,9 +108,11 @@ function detectHit(p1, p2){
     if(hitTest){
         console.log('Gas refilled')
         console.log('collision')
+        // adds score to game
         let gameScore = Number(score.textContent)
         let NewScore = gameScore + 100
         score.textContent = (NewScore)
+        // function to render new gas can
         return newGasCan()
     } else{
         return false
@@ -116,7 +120,7 @@ function detectHit(p1, p2){
         }
     }
 
-
+// starts game and enables game loop, starts music, renders objects on canvas
 function gameStart(){
     console.log('Game has started')
     playerOne = new Car(250,400,'red',30,50)
@@ -125,11 +129,12 @@ function gameStart(){
     gameInterval = setInterval(gameLoop, 50)
     console.log(`Game Active: ${gameActive}`)
     score.innerText = '0';
+    // music for game on start
     music.setAttribute('src', "mixkit-tech-house-vibes-130.mp3")
     music.setAttribute('controls', 'controls')
 }
 start.addEventListener('click', gameStart)
-
+// runs game loop
 function gameLoop(){
     ctx.clearRect(0, 0, game.width, game.height);
     if(gasCan.alive){
@@ -140,24 +145,27 @@ function gameLoop(){
     playerOne.render();
     gameOver()
 }
-
+// spawns new gas can 3 seconds after the last one was hit
 function newGasCan(){
     gasCan.alive = false
     setTimeout(function(){
+        // spawn location on canvas for gas can is randomized
         let x = Math.floor(Math.random()* 500)
         gasCan = new Obstacle(x,10,'blue',80,50)
         
     }, 3000)
    return true
 }
-
+// function for ending game loop and determines whether its a win or loss
 function gameOver(){
+    // loss condition
     if(gasCan.y > 500){
         clearInterval(gameInterval)
         console.log('game over')
         alert(`Game Over: your score was ${score.innerText}`)
         clearInterval(gameInterval)
         music.setAttribute('src', null)
+        // win condition
     }else if(score.innerText === '1500'){
         alert('Winner')
         clearInterval(gameInterval)
