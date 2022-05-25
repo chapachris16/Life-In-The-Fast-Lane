@@ -122,7 +122,7 @@ function gameStart(){
     playerOne = new Car(250,400,'red',30,50)
     gasCan = new Obstacle((Math.random()* 440),10,'blue',80,50)
     playerOne.render()
-    gameInterval = setInterval(gameLoop, 60)
+    gameInterval = setInterval(gameLoop, 50)
     console.log(`Game Active: ${gameActive}`)
     score.innerText = '0';
     music.setAttribute('src', "mixkit-tech-house-vibes-130.mp3")
@@ -157,9 +157,11 @@ function gameOver(){
         console.log('game over')
         alert(`Game Over: your score was ${score.innerText}`)
         clearInterval(gameInterval)
+        music.setAttribute('src', null)
     }else if(score.innerText === '1500'){
         alert('Winner')
         clearInterval(gameInterval)
+        music.setAttribute('src', null)
     }
 }
 
