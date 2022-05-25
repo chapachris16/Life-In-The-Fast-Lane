@@ -34,6 +34,7 @@ let gameInterval
 let can = document.getElementById('gas-can')
 let raceCar = document.getElementById('player')
 let score = document.getElementById('score')
+let music = document.getElementById('audio')
 // 
 
 // class creator for player need to edit to include sprite instead of color properties
@@ -126,7 +127,9 @@ function gameStart(){
     playerOne.render()
     gameInterval = setInterval(gameLoop, 60)
     console.log(`Game Active: ${gameActive}`)
-    score.innerText = null;
+    score.innerText = '0';
+    music.setAttribute('src', "mixkit-tech-house-vibes-130.mp3")
+    music.setAttribute('controls', 'controls')
 }
 start.addEventListener('click', gameStart)
 
@@ -156,7 +159,7 @@ function gameOver(){
     if(gasCan.y > 500){
         clearInterval(gameInterval)
         console.log('game over')
-        alert('Game Over')
+        alert(`Game Over: your score was ${score.innerText}`)
     }else if(score.innerText === '1500'){
         alert('Winner')
         clearInterval(gameInterval)
