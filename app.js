@@ -133,7 +133,7 @@ start.addEventListener('click', gameStart)
 function gameLoop(){
     ctx.clearRect(0, 0, game.width, game.height);
     if(gasCan.alive){
-        gasCan.y += 8
+        gasCan.y += 10
         gasCan.render()
         let hit = detectHit(playerOne, gasCan)
     }
@@ -157,5 +157,10 @@ function gameOver(){
         clearInterval(gameInterval)
         console.log('game over')
         alert('Game Over')
+    }else if(score.innerText === '1500'){
+        alert('Winner')
+        clearInterval(gameInterval)
     }
 }
+
+
