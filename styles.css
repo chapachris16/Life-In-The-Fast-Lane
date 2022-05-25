@@ -22,7 +22,8 @@ canvas{
     background-size: contain;
 }
 button{
-margin-bottom: 40px;
+    margin-top: 15px;
+margin-bottom: 20px;
 font-size: 25px;
 color: #0BD3D3;
 background-color:dimgrey;
@@ -31,4 +32,20 @@ font-family: cursive;
 
 img{
     display: none;
+}
+#instructions{
+    border: #F890E7 solid 10px;
+    background-color:#0BD3D3;
+    color:#F890E7;
+    font-size: 30px;
+    font-weight: bolder;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+#score{
+    border: #F890E7 solid 10px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 25%;
+    margin-right: 25%;
 }
