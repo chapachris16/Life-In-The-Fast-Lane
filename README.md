@@ -8,7 +8,7 @@ As a user I want to:
 
 - .Have the player be able to move back and forth in the game.
 - .Players will need to catch gas cans falling on screen for the game to keep going
-- .Give the game a miami vice aesthetic using the bright colors
+- .Give the game a Miami Vice aesthetic using the bright colors and music
 - .Keep track of the score and for players to reach the winning score
 
 
