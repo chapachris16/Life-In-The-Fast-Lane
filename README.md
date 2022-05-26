@@ -6,8 +6,10 @@ User Story
 
 As a user I want to:
 
-- .Create a goal of staying alive by having the player catch gas cans to keep the car from running out of gas
-- .Adjust the speed that obstacles come in over time to create a challenge element to the game
+- .Have the player be able to move back and forth in the game.
+- .Players will need to catch gas cans falling on screen for the game to keep going
+- .Give the game a miami vice aesthetic using the bright colors
+- .Keep track of the score and for players to reach the winning score
 
 
 Technologies Used
